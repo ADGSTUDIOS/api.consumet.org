@@ -55,7 +55,7 @@ export const tmdbApi = process.env.apiKey && process.env.apiKey;
 
   try {
     fastify.get('/', (_, rp) => {
-      rp.status(200).send('Welcome to consumet api! 🎉');
+      rp.status(200).send('Welcome to anime @ adgstudios api! 🎉');
     });
     fastify.get('*', (request, reply) => {
       reply.status(404).send({

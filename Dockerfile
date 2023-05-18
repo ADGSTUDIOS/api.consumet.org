@@ -19,8 +19,8 @@ ARG NODE_ENV=development
 ARG PORT=3000
 # ARG NODE_ENV=production
 # to be able to run tests (for example in CI), do not set production as environment
-ENV NODE_ENV=${NODE_ENV}
-ENV PORT=${PORT}
+ENV NODE_ENV=$NODE_ENV
+ENV PORT=$PORT
 
 ENV NPM_CONFIG_LOGLEVEL=warn
 
@@ -40,7 +40,7 @@ COPY --chown=nodejs:nodejs . .
 # COPY --from=builder /dist /dist
 
 # exposed port/s
-EXPOSE 3000
+EXPOSE $PORT
 
 # add an healthcheck, useful
 # healthcheck with curl, but not recommended
@@ -49,6 +49,6 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s CMD npm run healthcheck-manual
 
 # ENTRYPOINT [ "node" ]
-CMD [ "npm", "start" ]
+CMD [ "npm", "start","--port", "$PORT"]
 
 # end.
